@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto en el Dashboard</title>
+</head>
+<body>
+<h1>Detalle del Producto en el Dashboard</h1>
+<div>
+    <h2><%= product.name %></h2>
+    <img src="<%= product.image %>" alt="<%= product.name %>">
+    <p><%= product.description %></p>
+    <p>Categoría: <%= product.category %></p>
+    <p>Talla: <%= product.size %></p>
+    <p>Precio: <%= product.price %>€</p>
+</div>
+<a href="/dashboard/<%= product._id %>/edit">
+    <button>Editar Producto</button>
+</a>
+<form id="deleteForm" action="/dashboard/<%= product._id %>/delete" method="POST">
+    <button id="deleteButton" type="button">Eliminar Producto</button>
+</form>
+
+<script>
+    document.getElementById('deleteButton').addEventListener('click', function() {
+        if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+            fetch('/dashboard/<%= product._id %>/delete', {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/dashboard';
+                    } else {
+                        alert('No se pudo eliminar el producto');
+                    }
+                })
+                .catch(error => console.error('Error al eliminar el producto:', error));
+        }
+    });
+</script>
+</body>
+</html>
