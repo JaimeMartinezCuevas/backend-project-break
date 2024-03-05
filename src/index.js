@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const productRoutes = require('./routes/productRoutes');
 const connectDB = require('./config/db'); // Importar connectDB
 const Product = require('./models/Product');
+const path = require('path');
 
 // Configuración de variables de entorno
 dotenv.config({ path: './.env' });
@@ -18,6 +19,10 @@ app.use(express.json());
 app.set('view engine', 'ejs');
 app.set('views', './views'); // Directorio donde se encuentran tus vistas
 app.use(methodOverride('_method'));
+
+// Middleware para manejar el CSS
+// app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 
 // Conexión a la base de datos
@@ -65,6 +70,8 @@ app.get('/', async (req, res) => {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tienda de Ropa</title>
+        <link rel="stylesheet" href="/styles.css">
+
       </head>
       <body>
         <nav>
@@ -112,6 +119,8 @@ app.get('/dashboard/', async (req, res) => {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Tienda de Ropa</title>
+      <link rel="stylesheet" href="/styles.css">
+
     </head>
     <body>
       <nav>
