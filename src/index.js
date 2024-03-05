@@ -55,9 +55,8 @@ app.get('/', async (req, res) => {
     const productsList = products.map(product => `
       <li>
         <h2>${product.name}</h2>
-        <p>${product.description}</p>
         <img src="${product.image}" alt="${product.name}">
-        <p>Precio: ${product.price}€</p>
+        <p>${product.price}€</p>
         <a href="/products/${product._id}">Ver detalles</a>
       </li>
     `).join('');
@@ -67,27 +66,40 @@ app.get('/', async (req, res) => {
       <!DOCTYPE html>
       <html lang="es">
       <head>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Tienda de Ropa</title>
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
         <link rel="stylesheet" href="/styles.css">
 
       </head>
-      <body>
-        <nav>
-          <ul>
-            <li><a href="/products">Productos</a></li>
-            
-            ${res.locals.categories.map(category => `<li><a href="/products?category=${encodeURIComponent(category)}">${category}</a></li>`).join('')}
 
-            <li><a href="/login">Login</a></li>
+        <body>
+          <nav>
+            <ul class="navegador">
+              <li><a href="/products">Productos</a></li>
+              
+              ${res.locals.categories.map(category => `<li><a href="/products?category=${encodeURIComponent(category)}">${category}</a></li>`).join('')}
+
+              <li><a href="/login">Login</a></li>
+            </ul>
+          </nav>
+
+          <div class="banner">
+            <h1>MANN CO. STORE</h1>
+            <br>
+            <p>We sell products and get into fights</p>
+          </div>
+
+          <ul class="list">
+            ${productsList}
           </ul>
-        </nav>
-        <h1>¡Bienvenido a la tienda de ropa!</h1>
-        <ul>
-          ${productsList}
-        </ul>
-      </body>
+
+        </body>
       </html>
     `);
   } catch (error) {
@@ -105,7 +117,6 @@ app.get('/dashboard/', async (req, res) => {
   const productsList = products.map(product => `
     <li>
       <h2>${product.name}</h2>
-      <p>${product.description}</p>
       <img src="${product.image}" alt="${product.name}">
       <p>Precio: ${product.price}€</p>
       <a href="/dashboard/${product._id}">Ver detalles</a>
@@ -116,26 +127,40 @@ app.get('/dashboard/', async (req, res) => {
     <!DOCTYPE html>
     <html lang="es">
     <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Tienda de Ropa</title>
-      <link rel="stylesheet" href="/styles.css">
 
-    </head>
-    <body>
-      <nav>
-        <ul>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Ropa</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="/styles.css">
+
+  </head>
+
+      <body>
+        <nav>
+        <ul class="navegador">
           <li><a href="/products">Productos</a></li>
+          
           ${res.locals.categories.map(category => `<li><a href="/products?category=${encodeURIComponent(category)}">${category}</a></li>`).join('')}
-          <li><a href="/dashboard/new">Nuevo Producto</a></li>
+
           <li><a href="/login">Login</a></li>
         </ul>
       </nav>
-      <h1>¡Bienvenido a la tienda de ropa!</h1>
-      <ul>
-          ${productsList}
-        </ul>
-    </body>
+
+      <div class="banner">
+        <h1>MANN CO. STORE</h1>
+        <br>
+        <p>We sell products and get into fights*</p>
+      </div>
+
+      <ul class="list">
+        ${productsList}
+      </ul>
+        
+      </body>
     </html>
   `);
 });
