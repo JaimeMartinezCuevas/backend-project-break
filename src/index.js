@@ -13,6 +13,7 @@ dotenv.config({ path: './.env' });
 // Inicialización de la aplicación Express
 const app = express();
 
+
 // Middleware para manejar datos del formulario
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,8 +21,8 @@ app.set('view engine', 'ejs');
 app.set('views', './views'); // Directorio donde se encuentran tus vistas
 app.use(methodOverride('_method'));
 
+
 // Middleware para manejar el CSS
-// app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 
@@ -36,8 +37,10 @@ mongoose.connect(process.env.MONGO_URI, {
   process.exit(1);
 });
 
+
 // Configuración de las rutas
 app.use('/', productRoutes);
+
 
 // Middleware para la barra de menú
 app.use((req, res, next) => {
@@ -45,9 +48,13 @@ app.use((req, res, next) => {
   next();
 });
 
+
+//--MAIN--//
+
 // Manejador para la ruta raíz
 app.get('/', async (req, res) => {
   try {
+
     // Obtener todos los productos
     const products = await Product.find();
 
@@ -73,7 +80,7 @@ app.get('/', async (req, res) => {
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Tienda de Ropa</title>
+        <title>Tienda de ropa</title>
         
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,8 +90,11 @@ app.get('/', async (req, res) => {
       </head>
 
         <body>
+
           <nav>
             <ul class="navegador">
+
+              <li><a href="/">Inicio</a></li>
               <li><a href="/products">Productos</a></li>
               
               ${res.locals.categories.map(category => `<li><a href="/products?category=${encodeURIComponent(category)}">${category}</a></li>`).join('')}
@@ -112,6 +122,9 @@ app.get('/', async (req, res) => {
   }
 });
 
+
+//--DASHBOARD--//
+
 // Manejador para la ruta dashboard
 app.get('/dashboard/', async (req, res) => {
   // Obtener todos los productos
@@ -122,8 +135,12 @@ app.get('/dashboard/', async (req, res) => {
     <li>
       <h2>${product.name}</h2>
       <img src="${product.image}" alt="${product.name}">
-      <p>Precio: ${product.price}€</p>
-      <a href="/dashboard/${product._id}">Ver detalles</a>
+
+      <div class="details">
+        <p>${product.price}€</p>
+        <a href="/dashboard/${product._id}">Ver detalles</a>
+      </div>
+
     </li>
   `).join('');
   
@@ -134,7 +151,7 @@ app.get('/dashboard/', async (req, res) => {
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Ropa</title>
+    <title>Tienda de ropa (Dashboard)</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -143,11 +160,14 @@ app.get('/dashboard/', async (req, res) => {
 
   </head>
 
-      <body>
-        <nav>
+    <body>
+
+      <nav>
         <ul class="navegador">
+
+          <li><a href="/dashboard">Inicio</a></li>
           <li><a href="/products">Productos</a></li>
-          
+            
           ${res.locals.categories.map(category => `<li><a href="/products?category=${encodeURIComponent(category)}">${category}</a></li>`).join('')}
 
           <li><a href="/login">Login</a></li>

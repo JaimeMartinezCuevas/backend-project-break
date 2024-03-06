@@ -3,25 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Productos</title>
+    <title>Lista de productos</title>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="/styles.css">
+
 </head>
-<body>
-<h1>Lista de Productos</h1>
-<ul>
-    <% products.forEach(product => { %>
-        <li>
-            <p>ID: <%= product._id %></p>
-            <h2><%= product.name %></h2>
-            <img src="<%= product.image %>" alt="<%= product.name %>">
-            <p><%= product.description %></p>
-            <p>Categoría: <%= product.category %></p>
-            <p>Talla: <%= product.size %></p>
-            <p>Precio: <%= product.price %>€</p>
-            <a href="/products/<%= product._id %>">
-                <button>Ver más información</button>
-            </a>
-        </li>
-    <% }); %>
-</ul>
+
+<body class="body-details">
+
+    <nav>
+        <ul class="navegador">
+
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/products">Productos</a></li>
+          <li><a href="/products?category=Camisetas">Camisetas</a></li>
+          <li><a href="/products?category=Pantalones">Pantalones</a></li>
+          <li><a href="/products?category=Zapatos">Zapatos</a></li>
+          <li><a href="/products?category=Accesorios">Accesorios</a></li>
+          <li><a href="/login">Login</a></li>
+          
+        </ul>
+    </nav>
+
+    <h1>Lista de productos</h1>
+
+    <ul>
+        <% products.forEach(product => { %>
+            <li class="main-content">
+                <div class="container list-container">
+
+                    <img src="<%= product.image %>" alt="<%= product.name %>">
+
+                    <div class="info">
+                        
+                        <h2><%= product.name %></h2>
+                        <br>
+                        <p><%= product.description %></p>
+                        <br>
+                        
+                        <div class="info-details">
+                            <!-- <p>Categoría: <%= product.category %></p>
+                            <p>Talla: <%= product.size %></p> -->
+                            <p>Precio: <%= product.price %>€</p>
+                        </div>
+                        
+                        <a href="/products/<%= product._id %>">
+                            <button>Más información</button>
+                        </a>
+                    
+                    </div>
+                </div>
+            </li>
+        <% }); %>
+    </ul>
+
 </body>
 </html>
