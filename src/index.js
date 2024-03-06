@@ -56,8 +56,12 @@ app.get('/', async (req, res) => {
       <li>
         <h2>${product.name}</h2>
         <img src="${product.image}" alt="${product.name}">
-        <p>${product.price}€</p>
-        <a href="/products/${product._id}">Ver detalles</a>
+
+        <div class="details">
+          <p>${product.price}€</p>
+          <a href="/products/${product._id}">Ver detalles</a>
+        </div>
+        
       </li>
     `).join('');
 
