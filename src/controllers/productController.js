@@ -1,19 +1,19 @@
 const Product = require('../models/Product');
 const url = require('url');
 
-// Función para mostrar todos los productos
+//Imprimir todos los productos
 const showProducts = async (req, res) => {
   try {
-    // Obtener la URL completa, incluidos los parámetros de consulta
+    //URL completa
     const fullUrl = req.originalUrl;
     console.log('URL completa:', fullUrl);
 
-    // Analizar la URL para obtener los parámetros de consulta
+    //Parámetros de consulta
     const parsedUrl = new URL(fullUrl, 'http://localhost:3000');
     const queryParams = parsedUrl.searchParams;
     console.log('Parámetros de consulta:', queryParams.toString());
 
-    // Extraer el parámetro "category" de los parámetros de consulta
+    //Extraer tipo de ropa
     const category = queryParams.get('category');
     console.log('Categoría:', category);
 
@@ -32,7 +32,7 @@ const showProducts = async (req, res) => {
 };
 
 
-// Función para mostrar el detalle de un producto por su ID
+//Función detalle de producto
 const showProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.productId);
@@ -45,12 +45,12 @@ const showProductById = async (req, res) => {
   }
 };
 
-// Función para mostrar el formulario de creación de un nuevo producto
+//Imprimir formulario de creación
 const showNewProductForm = (req, res) => {
   res.render('newProduct');
 };
 
-// Función para crear un nuevo producto
+//Template creación dw producto
 const getNewProductForm = (req, res) => {
   res.send(`
 
@@ -140,12 +140,12 @@ const getNewProductForm = (req, res) => {
   `);
 };
 
-// Función para manejar la creación de un nuevo producto
+//Crear producto nuevo
 const createProduct = async (req, res) => {
   try {
     const { name, description, image, category, size, price } = req.body;
 
-    // Crear un nuevo producto con los datos del formulario
+    //Usar datos del formulario
     const newProduct = new Product({
       name,
       description,
@@ -155,10 +155,10 @@ const createProduct = async (req, res) => {
       price
     });
 
-    // Guardar el producto en la base de datos
+    //Guardarlo en la base de datos
     await newProduct.save();
 
-    // Redireccionar a alguna página, como el dashboard
+    //Redireccionar al dashboard
     res.redirect('/dashboard');
   } catch (error) {
     console.error('Error al crear el producto:', error);
@@ -166,7 +166,7 @@ const createProduct = async (req, res) => {
   }
 };
 
-// Función para mostrar el formulario de edición de un producto por su ID
+//Imprimir formulario para edicitar
 const showEditProductForm = async (req, res) => {
   try {
     const product = await Product.findById(req.params.productId);
@@ -179,7 +179,7 @@ const showEditProductForm = async (req, res) => {
   }
 };
 
-// Función para actualizar un producto por su ID
+//Actualizar producto
 const updateProduct = async (req, res) => {
   try {
     const { name, description, image, category, size, price } = req.body;
@@ -190,28 +190,31 @@ const updateProduct = async (req, res) => {
   }
 };
 
-// Función para eliminar un producto por su ID
+//Borrar producti
 const deleteProduct = async (req, res) => {
   try {
     const productId = req.params.productId;
-    // Eliminar el producto de la base de datos
+
+    //Borrar de la base de datos
     await Product.findByIdAndDelete(productId);
-    // Redireccionar a la página de productos o al dashboard
-    res.redirect('/products'); // O '/dashboard' según sea necesario
+
+    //Redireccionar a la lista
+    res.redirect('/products');
+
   } catch (error) {
     console.error('Error al eliminar el producto:', error);
     res.status(500).send('Error interno del servidor');
   }
 };
 
-// Función para mostrar el detalle de un producto en el dashboard
+//Detalles en el dashboard
 const showProductInDashboard = async (req, res) => {
   try {
     const product = await Product.findById(req.params.productId);
     if (!product) {
       return res.status(404).send('Producto no encontrado');
     }
-    res.render('productDetailInDashboard', { product }); // Renderiza la vista del detalle del producto en el dashboard
+    res.render('productDetailInDashboard', { product });
   } catch (error) {
     res.status(500).send('Error al obtener el producto para mostrar en el dashboard');
   }

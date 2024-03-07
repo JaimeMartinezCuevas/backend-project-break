@@ -2,31 +2,29 @@ const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/productController');
 
-// Ruta para mostrar todos los productos
+//Ruta de productos
 router.get('/products', productController.showProducts);
   
-// Ruta para mostrar el detalle de un producto por su ID
+//Ruta detalles id
 router.get('/products/:productId', productController.showProductById);
 
-// Ruta para mostrar el formulario para crear un nuevo producto
+//Ruta formulario nuevo producto
 router.get('/dashboard/new', productController.getNewProductForm);
 
-// Ruta para manejar la creación de un nuevo producto
+//Ruta crear producto nuevo
 router.post('/dashboard/new', productController.createProduct);
-
-// Ruta para crear un nuevo producto
 router.post('/dashboard', productController.createProduct);
 
-// Ruta para mostrar el formulario de edición de un producto por su ID
+//Rutaformulario editar producto
 router.get('/dashboard/:productId/edit', productController.showEditProductForm);
 
-// Ruta para actualizar un producto por su ID
+//Rutaformulario editar producto
 router.post('/dashboard/:productId', productController.updateProduct);
 
-// Ruta para mostrar el detalle de un producto en el dashboard
+//Ruta detalles id dashboard
 router.get('/dashboard/:productId', productController.showProductInDashboard);
 
-// Ruta para eliminar un producto por su ID
+//Ruta borrar producto
 router.delete('/dashboard/:productId/delete', productController.deleteProduct);
 
 module.exports = router;

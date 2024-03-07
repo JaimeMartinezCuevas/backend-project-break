@@ -6,26 +6,25 @@ const productRoutes = require('./routes/productRoutes');
 const Product = require('./models/Product');
 const path = require('path');
 
-// Configuración de variables de entorno
+//Variables de entorno
 dotenv.config({ path: './.env' });
 
-// Inicialización de la aplicación Express
 const app = express();
 
 
-// Middleware para manejar datos del formulario
+//Middleware formulario
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set('view engine', 'ejs');
-app.set('views', './views'); // Directorio donde se encuentran tus vistas
+app.set('views', './views');
 app.use(methodOverride('_method'));
 
 
-// Middleware para manejar el CSS
+//Middleware CSS
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 
-// Conexión a la base de datos
+//Base de datos
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -37,11 +36,11 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 
-// Configuración de las rutas
+//Rutas
 app.use('/', productRoutes);
 
 
-// Middleware para la barra de menú
+//Barra de menú
 app.use((req, res, next) => {
   res.locals.categories = ['Camisetas', 'Pantalones', 'Zapatos', 'Accesorios'];
   next();
@@ -50,14 +49,14 @@ app.use((req, res, next) => {
 
 //--MAIN--//
 
-// Manejador para la ruta raíz
+//Ruta raíz
 app.get('/', async (req, res) => {
   try {
 
-    // Obtener todos los productos
+    //Obtener todos los productos
     const products = await Product.find();
 
-    // Generar la lista de productos en HTML
+    //Lista de productos en HTML
     const productsList = products.map(product => `
       <li>
         <h2>${product.name}</h2>
@@ -71,7 +70,7 @@ app.get('/', async (req, res) => {
       </li>
     `).join('');
 
-    // Renderizar la página con la lista de productos
+    //Renderizar lista de productos
     res.send(`
       <!DOCTYPE html>
       <html lang="es">
@@ -124,12 +123,13 @@ app.get('/', async (req, res) => {
 
 //--DASHBOARD--//
 
-// Manejador para la ruta dashboard
+//Ruta dashboard
 app.get('/dashboard/', async (req, res) => {
-  // Obtener todos los productos
+
+  //Obtener los productos
   const products = await Product.find();
 
-  // Generar la lista de productos en HTML
+  //Generar la lista de productos en HTML
   const productsList = products.map(product => `
     <li>
       <h2>${product.name}</h2>
@@ -189,7 +189,7 @@ app.get('/dashboard/', async (req, res) => {
   `);
 });
 
-// Inicio del servidor
+//Inicio del servidor
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Servidor iniciado en el puerto ${PORT}`);
