@@ -170,6 +170,7 @@ app.get('/dashboard/', async (req, res) => {
             
           ${res.locals.categories.map(category => `<li><a href="/products?category=${encodeURIComponent(category)}">${category}</a></li>`).join('')}
 
+          <li><a href="/dashboard/new">Crear</a></li>
           <li><a href="/login">Login</a></li>
         </ul>
       </nav>

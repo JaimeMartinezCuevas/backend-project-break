@@ -280,6 +280,12 @@ h1 {
 .list-container {
 	max-width: 100%;
 	margin: 50px 100px;
+
+	transition: .3s all ease-in-out;
+}
+
+.list-container:hover {
+	box-shadow: -10px 10px 0 rgb(0, 0, 0);
 }
 
 
@@ -288,6 +294,7 @@ h1 {
 .btns-dev {
 	display: flex;
 	gap: 30px;
+	margin-bottom: 45px;
 }
 
 .btns-dev a button {
@@ -314,6 +321,7 @@ h1 {
 
 	border: none;
 
+	cursor: pointer;
 	background-color: rgb(40, 40, 40);
 	padding: 10px 20px;
 	border-radius: 50px;
@@ -327,3 +335,67 @@ h1 {
 	background-color: rgb(255, 0, 0);
 	color: #fff;
 }
+
+/* CREACIÓN NUEVO PRODUCTO */
+
+.body-details form {
+	font-size: 20px;
+
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .form-group label {
+    min-width: 100px;
+    margin-right: 10px;
+  }
+
+  .form-group input {
+	cursor: pointer;
+	border: none;
+
+	background-color: rgb(40, 40, 40);
+	padding: 10px 20px;
+	border-radius: 50px;
+  }
+
+  .form-group select {
+	  cursor: pointer;
+	  border: none;
+
+	background-color: rgb(40, 40, 40);
+	padding: 10px 20px;
+	border-radius: 50px;
+  }
+
+  .submit {
+	cursor: pointer;
+	text-transform: uppercase;
+	border: none;
+	
+	background-color: rgb(40, 40, 40);
+
+	font-size: 17px;
+	border-radius: 50px;
+	padding: 10px 20px;
+	margin-top: 20px;
+
+	transition: .3s all ease-in-out;
+  }
+
+  .submit:hover {
+	color: #000;
+	background-color: #fff;
+  }
+
+  .form-group input,
+  .form-group select {
+    flex: 1;
+  }
