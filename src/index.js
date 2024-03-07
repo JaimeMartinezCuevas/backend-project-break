@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const methodOverride = require('method-override');
 const productRoutes = require('./routes/productRoutes');
-const connectDB = require('./config/db'); // Importar connectDB
 const Product = require('./models/Product');
 const path = require('path');
 
