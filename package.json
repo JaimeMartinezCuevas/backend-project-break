@@ -7,9 +7,12 @@
     "mongoose": "8.2.0"
   },
   "bin": {
-    "execute": "index.js"
+    "execute": "src/index.js"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
-  }
+  },
+  "scripts": {
+    "start": "node src/index.js"
+}
 }
