@@ -81,7 +81,6 @@ const getNewProductForm = (req, res) => {
       <li><a href="/products?category=Zapatos">Zapatos</a></li>
       <li><a href="/products?category=Accesorios">Accesorios</a></li>
 
-      <li><a href="/login">Login</a></li>
     </ul>
   </nav>
   
