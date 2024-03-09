@@ -18,7 +18,7 @@ router.post('/dashboard', productController.createProduct);
 //Rutaformulario editar producto
 router.get('/dashboard/:productId/edit', productController.showEditProductForm);
 
-//Rutaformulario editar producto
+//Ruta formulario actualizae producto
 router.post('/dashboard/:productId', productController.updateProduct);
 
 //Ruta detalles id dashboard

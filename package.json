@@ -10,10 +10,21 @@
     "execute": "src/index.js"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "jest": "29.7.0",
+    "nodemon": "3.1.0"
   },
   "scripts": {
-    "start": "node src/index.js"
-},
-"main": "src/index.js"
+    "start": "node src/index.js",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testRegex": "(/test/.*|(\\.|/)(test|spec))\\.js$",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "node"
+    ]
+  },
+  "main": "src/index.js"
 }
