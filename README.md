@@ -170,3 +170,10 @@ Tras elimiarlo y gestionar las variables de entorno dentro de mi deploy, pude de
 
 La tienda tiene un nav que muestra las rutas a las que se puede acceder, facilitando la navegación. Sin embargo, para acceder al dashboard en necesario añadirlo a mano en la URL.
 Una vez dentro, se mostrará la página de inicio con la diferencia de que, al inspeccionar los productos, estos incuirán más datos, como el ID o la posibilidad de editarlos o eliminarlos. Tmabién se añade en enlace al formulario de creación de producto.
+
+
+## Enlaces
+
+FL0 deploy > https://app.fl0.com/the-bridge-deploy/test-tienda/dev/backend-project-break/deployments
+
+URL proyecto > https://backend-project-break-dev-trbh.2.ie-1.fl0.io/
