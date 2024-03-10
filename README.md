@@ -15,8 +15,9 @@ En este ReadMe se resumirá el proceso de desarrollo del proyecto y los recursos
 8. Creación del ``index.js``
 9. Creación de plantillas EJS
 10. Creación del CSS
-11. Despliegue
-12. Navegación
+11. Creación de los tests
+12. Despliegue
+13. Navegación
 
 
 ## Estructura de archivos
@@ -149,6 +150,12 @@ En las estructuras HTML de los archivos .ejs mencionados ateriormente pude añad
 Trabajando con las clases de las etiquetas HTML de los .ejs fui aplicando estilos y efectos para crear una mínima interactividad para el usuario, además de implementar características flexbox para crear un diseño mínimamente responsive.
 
 Hubiera querido añadir mediaqueries para mejorar el formato en pantallas pequeñas, pero había estado teniendo problemas con el despliegue, por lo que decidí ceñirme al flexbox.
+
+
+## Creación de los tests
+
+Para crear los tests de los controladores, empleé jest para "burlar" el código y simularlo para poder testearlo y manejar los errores. Para ello es necesario requerir tanto el modelo de ``src/models/Product`` y los controladores de ``src/controllers/productController``.
+Incluye tests para supuestos para todos los controladores.
 
 
 ## Despliegue
